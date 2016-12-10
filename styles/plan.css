@@ -1,0 +1,114 @@
+.clearfix:after {
+	clear: both;
+	content: "";
+	display: block;
+}
+
+body {
+	background-color: #4A96AD;
+}
+
+header {
+	text-align: center;
+	color: white;
+}
+
+.header {
+	cursor: pointer;
+}
+
+.ui.centered.card {
+	max-width: 300px;
+	max-height: 300px;
+}
+
+.weathertext {
+	font-weight: bold;
+	font-size: 16px;
+	text-align: right;
+	margin-right: 5px;
+	margin-top: 40px;
+}
+
+.cloudRainIcon {
+	max-width: 100px;
+	max-height: 100px;
+	float: left;
+	margin-left: 5px;
+}
+
+.sunIcon {
+	max-width: 100px;
+	max-height: 100px;
+	margin-left: 5px;
+	float: left;
+}
+
+.snowflakeIcon {
+	width: auto;
+	height:auto;
+	max-width: 100px;
+	max-height: 100px;
+	margin-left: 5px;
+	float: left;
+}
+
+.dressIcon {
+	max-width: 100x;
+	max-height: 100px;
+	margin-left: 5px;
+	float: left;
+}
+
+.formal {
+	font-weight: bold;
+	font-size: 16px;
+	text-align: right;
+	margin-right: 5px;
+	margin-top: 30px;
+}
+
+.yogaIcon {
+	max-width: 100px;
+	max-height: 100px;
+	margin-left: 5px;
+	float: left;
+}
+
+.yoga {
+	font-weight: bold;
+	font-size: 16px;
+	text-align: right;
+	margin-right: 5px;
+	margin-top: 30px;
+}
+
+.meetingIcon {
+	max-width: 100px;
+	max-height: 100px;
+	margin-left: 5px;
+	float: left;
+}
+
+.meeting {
+	font-weight: bold;
+	font-size: 16px;
+	text-align: right;
+	margin-right: 5px;
+	margin-top: 30px;
+}
+
+.gymIcon {
+	max-width: 100px;
+	max-height: 100px;
+	margin-left: 5px;
+	float: left;
+}
+
+.gym {
+	font-weight: bold;
+	font-size: 16px;
+	text-align: right;
+	margin-right: 5px;
+	margin-top: 30px;
+}

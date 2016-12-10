@@ -1,0 +1,24 @@
+body > .grid {
+	height: 100%;
+}
+
+.image {
+	margin-top: -100px;
+}
+
+.column {
+	max-width: 450px;
+}
+
+.company {
+	font-size: 30px;
+}
+
+.description {
+	font-size: 25px;
+	margin-top: 30px;
+}
+
+.field {
+	width: 100%;
+}
