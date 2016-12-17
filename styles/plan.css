@@ -112,3 +112,17 @@ header {
 	margin-right: 5px;
 	margin-top: 30px;
 }
+
+.header {
+    cursor: pointer;
+    pointer-events: none;
+
+}
+
+.bayBackground {
+	background-image: url("../assets/bayBackground.jpg");
+	background-size: cover;
+	background-repeat: no-repeat;
+	opacity: .9;
+	min-height: 800px;
+}
