@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="styles/plan.css">
   </head>
   
-  <body>
+  <body class="js-plan">
     <div class="bayBackground clearfix">
       <header>
         <br>
@@ -14,14 +14,22 @@
         <h2>Have a great day!</h2>
       </header>
 
-       <div class="ui fluid large teal submit button js-showcontent">Login</div>
+      <!--  <div class="ui fluid large teal submit button js-showcontent">Login</div> -->
 
-      <div class="js-container"></div>
-      
+      <div class="js-container">
+          <div class="spinner"></div>
+
+      </div>
+        
       
 
       <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+
+      <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAcI0JUkfni3Do4HC9uf1d7LIK9_ZGIj0g"></script>
+
       <script src='javascript/main.js'></script>
+
+      <script src="https://apis.google.com/js/client.js?onload=initAppFromGoogleScript"></script>
       <!-- <script src='javascript/data.js'></script> -->
     </div>
   </body>

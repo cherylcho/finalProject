@@ -1,48 +1,40 @@
 <!DOCTYPE html>
 <html>
-	<head>
-		<title>finalProject</title>
-		<link rel="stylesheet" href="styles/semantic.css">
-		<link rel="stylesheet" href="styles/main.css">
-	</head>
-
-	<body>
-		<div class="background clearfix">
-			
-			<div class="ui middle aligned center aligned grid">
-	  			<div class="column">
-		    		<h2 class="ui image header">
-		      		<div class="content company">
-		        		<div class="description"> [Planning Tool] 
-		        		<br> 
-		        		<br> 
-		        		The daily outfit planning tool to help you always be prepared.</div>
-	      			</div>
-	 
-		    	</h2>
-		    	<form action="http://s.codepen.io/voltron2112/debug/PqrEPM?" method="get" class="ui large form">
-		      	
-		      	<div class="ui stacked secondary  segment">
-		        	<div class="field">
-		        	<div class="ui left icon input">
-		        	<input class = "zipcode" type="text" name="Zipcode" placeholder="Zipcode">
-		        </div>
-	        </div>
-	       
-	        <div class="ui fluid large teal submit button js-showcontent">Login</div>
-
-	      </div>
-
-	      <div class="ui error message"></div>
-
-	    		</form>
-	  		</div>
-		</div>
-		</div>	
-		
-		<script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
-	    <script src='javascript/main.js'></script>
-	
-	</body>
-
+    <head>
+        <title>finalProject</title>
+        <link rel="stylesheet" href="styles/semantic.css">
+        <link rel="stylesheet" href="styles/main.css">
+    </head>
+    <body>
+        <div class="background clearfix">
+            <div class="ui middle aligned center aligned grid">
+                <div class="column">
+                    <h2 class="ui image header">
+                        <div class="content company">
+                            <div class="description"> [Planning Tool] 
+                                <br> 
+                                <br> 
+                                The daily outfit planning tool to help you always be prepared.
+                            </div>
+                        </div>
+                    </h2>
+                    <form action="plan.html" method="get" class="ui large form js-zipcode-form">
+                        <div class="ui stacked secondary  segment">
+                            <div class="field">
+                                <div class="ui left icon input">
+                                    <input class="zipcode" type="number" name="zipcode" placeholder="Zipcode" required>
+                                </div>
+                            </div>
+                            <div class="field">
+                            	<button class="ui large teal submit button fluid">Login</button>
+                            </div>
+                        </div>
+                        <div class="ui error message"></div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <script src='http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js'></script>
+        <script src='javascript/main.js'></script>
+    </body>
 </html>
