@@ -40,7 +40,7 @@ function getWeather(zipcode) {
 
 function onDataBack(response) {
     const data = JSON.parse(response);
-
+    console.log(data);
     const degreesFarenheit = data.currently.temperature;
 
     const chancePrecip = data.hourly.data[0].precipProbability;
@@ -65,16 +65,22 @@ function onDataBack(response) {
         	message:'Break out snow boots',
     	});
     } else if (precipType === 'sleet') {
-        weatherObjects['assets/snowflake.png', degreesFarenheit, percentPrecip, 'Break out snow boots'];
+        weatherObjects.push({
+        	imageSrc:'assets/snowflake.png', 
+        	degrees: degreesFarenheit, 
+        	percip: percentPrecip, 
+        	message:'Break out snow boots',
+    	});
     }
     else {
     	weatherObjects.push({
         	imageSrc: 'assets/sun.png', 
         	degrees: degreesFarenheit, 
         	percip: percentPrecip, 
-        	message: 'Sunz out gunz out'
+        	message: 'Rock those shades'
         });
     }
+
     // } else if //NEED HELP: when precipType doesn't show up (it's an optional field), i want to display sun icon
 
 
@@ -90,7 +96,6 @@ function onDataBack(response) {
 	    <div class="header">${currentObj.message}</div>
 	  </div>
 	</div>
-
 	`;
     });
 
@@ -100,51 +105,143 @@ function onDataBack(response) {
 
 function displayCalendarEvents(events) {
 	console.log(events)
+	
+	function displayImage(event) {
+		if (event.colorId = "11") {
+			return 'assets/dress.jpg';
+		}
+		else if (event.colorId = "10") {
+			return 'assets/gym.png';
+		}
+		else if (event.colorId = "5") {
+			return 'casual.png';
+		}
+	}
 
-const eventObjects = [{
-        imageSrc: 'assets/dress.jpg',
-        name: 'Holiday Party',
-        time: '7pm',
-        location: 'The Standard (848 Washington St)',
-        message: 'Formal attire',
-    }, {
-        imageSrc: 'assets/yoga.png',
-        name: 'Yoga',
-        time: '8am',
-        location: 'Yoga Herald Square (139 W. 35th St)',
-        message: 'Bring yoga-wear',
-    }, {
-        imageSrc: 'assets/meeting.png',
-        name: 'Meeting',
-        time: '3:30pm',
-        location: 'Gin',
-        message: 'Suit up',
-    }, {
-        imageSrc: 'assets/gym.png',
-        name: 'Gym',
-        time: '6:30pm',
-        location: 'NYSC',
-        message: 'Bring workout clothes',
-    }];
+	function displayMessage(event) {
+		if (event.colorId = "11") {
+			return 'Formal attire';
+		}
+		else if (event.colorId = "10") {
+			return 'Bring workout clothes';
+		}
+		else if (event.colorId = "5") {
+			return 'Casual Wear';
+		}
+	}
+			
+	function formatDate (date) {
+		let formattedDate = date.split('T')[0]
+		return formattedDate;
+	}
 
-    const eventCards = eventObjects.map(function(currentObj) {
+	let date = formatDate(events[0].start.dateTime)
 
-        return `
-	<div class="ui centered card clearfix">
-      <div>
-        <img src="${currentObj.imageSrc}" class="dressIcon">
-        <div class="formal">${currentObj.name}: ${currentObj.time} @${currentObj.location}</div>
-      </div>
-      <div class="content">
-        <div class="header">${currentObj.message}</div>
-      </div>
-    </div>
-
-	`;
-    });
+		const formatType = 'h:mm:ss a';
+		// const formattedTime = events[0].start.dateTime.split('T')[1];
+		
+		// const startTimeRaw = formattedTime.split('-')[0]
+		
+		// const startTimeFormatted = startTimeRaw.split(':')[0] + ":" + startTimeRaw.split(':')[1]
+		// console.log(startTimeFormatted)
+		
+	 	const eventObjects = Array.apply(null, Array(6)).map((curr, index) => {
+	 		return {
+	 			imageSrc: displayImage(events[index]),
+        name: events[index].summary,
+        time: moment(events[index].start.dateTime).format(formatType),
+        location: events[index].location,
+        message: displayMessage(events[index]),
+        rawTime: events[index].start.dateTime,
+	 		};
+	 	})
 
 
-$('.js-container').append(eventCards.join('\n'));
+	// const eventObjects = [{
+ //        imageSrc: displayImage(events[0]),
+ //        name: events[0].summary,
+ //        time: moment(events[0].start.dateTime).format(formatType),
+ //        location: events[0].location,
+ //        message: displayMessage(events[0]),
+ //    }, 
+ //    {
+ //        imageSrc: displayImage(events[1]),
+ //        name: events[1].summary,
+ //        time: events[1].start.dateTime,
+ //        location: events[1].location,
+ //        message: displayMessage(events[1]),
+ //    }, {
+ //        imageSrc: displayImage(events[2]),
+ //        name: events[2].summary,
+ //        time: events[2].start.dateTime,
+ //        location: events[2].location,
+ //        message: displayMessage(events[2]),
+ //    }, {
+ //        imageSrc: displayImage(events[3]),
+ //        name: events[3].summary,
+ //        time: events[3].start.dateTime,
+ //        location: events[3].location,
+ //        message: displayMessage(events[3]),
+ //    }, {
+ //        imageSrc: displayImage(events[4]),
+ //        name: events[4].summary,
+ //        time: events[4].start.dateTime,
+ //        location: events[4].location,
+ //        message: displayMessage(events[4]),
+ //    }, {
+ //        imageSrc: displayImage(events[5]),
+ //        name: events[5].summary,
+ //        time: events[5].start.dateTime,
+ //        location: events[5].location,
+ //        message: displayMessage(events[5]),
+ //    }, {
+ //        imageSrc: displayImage(events[6]),
+ //        name: events[6].summary,
+ //        time: events[6].start.dateTime,
+ //        location: events[6].location,
+ //        message: displayMessage(events[6]),
+ //  }];
+
+  function getToday() {
+  	let today = new Date()
+  	let year = today.getFullYear()
+  	let day = today.getDate()
+  	let month = today.getMonth()+1
+
+  	return year+'-'+month+'-'+day
+  }	
+
+  const eventCards = eventObjects.map(function(currentObj) {
+  	console.log(currentObj)
+
+  	const objDate = moment(currentObj.rawTime);
+  	const nowDate = moment();
+
+  	const isSameDate = objDate.date() === nowDate.date();
+  	const isSameMonth = objDate.month() === nowDate.month();
+  	const isSameYear = objDate.year() === nowDate.year();
+
+  	if ( isSameDate && isSameMonth && isSameYear ) {
+  		
+  	    return `
+				<div class="ui centered card clearfix">
+		      <div>
+		        <img src="${currentObj.imageSrc}" class="dressIcon">
+		        <div class="formal">${currentObj.name}: ${currentObj.time} @${currentObj.location}</div>
+		      </div>
+		      <div class="content">
+		        <div class="header">${currentObj.message}</div>
+		      </div>
+			  </div>`;
+		
+		}
+		else {
+			return '';
+		}
+  });
+
+  $('.js-container').append(eventCards.join('\n'));
+  
 }
 
 // THIS METHOD IS RUN BY THE GOOGLE APIS CALL
@@ -177,7 +274,7 @@ function initAppFromGoogleScript() {
     			$('.js-container').append(`
 <div class="ui centered card clearfix js-login">
 	<div>
-		<div>Please click below to log into to Google Calendar</div>
+		<div>Please click below to log into Google Calendar</div>
 	</div>
 	<div class="content">
 		<button class="ui fluid button"  onclick="getAuthorization()">Log in</button>
@@ -229,7 +326,7 @@ function getDateAsText() {
 // get google auth
 function getGoogleCalAuth(immediate) {
 	const CLIENT_ID = '790796644928-q7g8382df247mb9m2bmdt09m3s5qu3sh.apps.googleusercontent.com';
-    const SCOPES = ["https://www.googleapis.com/auth/calendar.readonly"];
+  const SCOPES = ["https://www.googleapis.com/auth/calendar.readonly"];
 	const permissionsOpts = {
 		client_id: CLIENT_ID,
 		scope: SCOPES,
@@ -280,7 +377,3 @@ function listUpcomingEvents() {
         });
 	});
 }
-
-
-
-
