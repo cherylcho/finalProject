@@ -25517,7 +25517,7 @@ a.ui.card,
 .ui.link.cards .card:hover,
 a.ui.card:hover,
 .ui.link.card:hover {
-  /*cursor: pointer;*/
+  cursor: pointer;
   z-index: 5;
   background: #FFFFFF;
   border: none;
