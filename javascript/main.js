@@ -56,21 +56,21 @@ function onDataBack(response) {
         weatherObjects.push({
         	imageSrc: 'assets/cloudRain.png', 
         	degrees: degreesFarenheit, 
-        	percip: percentPrecip, 
+        	precip: percentPrecip, 
         	message: 'Bring umbrella'
         });
     } else if (precipType === 'snow') {
         weatherObjects.push({
         	imageSrc:'assets/snowflake.png', 
         	degrees: degreesFarenheit, 
-        	percip: percentPrecip, 
+        	precip: percentPrecip, 
         	message:'Break out snow boots',
     	});
     } else if (precipType === 'sleet') {
         weatherObjects.push({
         	imageSrc:'assets/snowflake.png', 
         	degrees: degreesFarenheit, 
-        	percip: percentPrecip, 
+        	precip: percentPrecip, 
         	message:'Break out snow boots',
     	});
     }
@@ -78,7 +78,7 @@ function onDataBack(response) {
     	weatherObjects.push({
         	imageSrc: 'assets/sun.png', 
         	degrees: degreesFarenheit, 
-        	percip: percentPrecip, 
+        	precip: percentPrecip, 
         	message: 'Rock those shades'
         });
     }
@@ -87,6 +87,7 @@ function onDataBack(response) {
 
 
     const weatherCards = weatherObjects.map(function(currentObj) {
+// console.log(currentObj.precip)
 
         return `
 	<div class="ui centered card clearfix">
@@ -101,7 +102,7 @@ function onDataBack(response) {
 	`;
     });
 
-    $('.js-container').append(weatherCards.join('\n'));
+    $('.js-container').prepend(weatherCards.join('\n'));
 
 }
 
