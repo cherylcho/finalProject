@@ -43,11 +43,11 @@ function onDataBack(response) {
 
     const data = JSON.parse(response);
     console.log(data);
-    const degreesFarenheit = data.currently.temperature;
+    const degreesFarenheit = data.currently.apparentTemperature;
 
-    const chancePrecip = data.hourly.data[0].precipProbability;
+    const chancePrecip = data.daily.data[0].precipProbability;
     const percentPrecip = Math.round((chancePrecip * 100) / 10).toFixed(0);
-    const precipType = data.hourly.data[0].precipType;
+    const precipType = data.daily.data[0].precipType;
 
 
     const weatherObjects = [];
