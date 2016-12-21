@@ -27,7 +27,7 @@ function getWeather(zipcode) {
             const lat = results[0].geometry.location.lat();
             const lng = results[0].geometry.location.lng();
 
-            const urlToRequest = `http://darksky.webscript.io/forecast?key=${darkSkyKey}&latLng=${lat},${lng}`;
+            const urlToRequest = `https://darksky.webscript.io/forecast?key=${darkSkyKey}&latLng=${lat},${lng}`;
             const data = $.get(urlToRequest);
             data.then(onDataBack);
         } else {
