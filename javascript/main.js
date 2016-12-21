@@ -39,12 +39,14 @@ function getWeather(zipcode) {
 }
 
 function onDataBack(response) {
+    $(".spinner").hide();
+
     const data = JSON.parse(response);
     console.log(data);
     const degreesFarenheit = data.currently.temperature;
 
     const chancePrecip = data.hourly.data[0].precipProbability;
-    const percentPrecip = Math.round((chancePrecip * 100) / 10);
+    const percentPrecip = Math.round((chancePrecip * 100) / 10).toFixed(0);
     const precipType = data.hourly.data[0].precipType;
 
 
@@ -105,28 +107,35 @@ function onDataBack(response) {
 
 function displayCalendarEvents(events) {
 	console.log(events)
+	console.log(events[0].description)
 	
-	function displayImage(event) {
-		if (event.colorId = "11") {
+	function displayImage(events) {
+		if (events.description === "formal") {
 			return 'assets/dress.jpg';
 		}
-		else if (event.colorId = "10") {
+		else if (events.description === "gym") {
 			return 'assets/gym.png';
 		}
-		else if (event.colorId = "5") {
-			return 'casual.png';
+		else if (events.description === "meeting") {
+			return 'assets/meeting.png';
+		}
+		else if (events.description === "casual") {
+			return 'assets/casual.png';
 		}
 	}
 
-	function displayMessage(event) {
-		if (event.colorId = "11") {
+	function displayMessage(events) {
+		if (events.description === "formal") {
 			return 'Formal attire';
 		}
-		else if (event.colorId = "10") {
+		else if (events.description === "gym") {
 			return 'Bring workout clothes';
 		}
-		else if (event.colorId = "5") {
-			return 'Casual Wear';
+		else if (events.description === "meeting") {
+			return 'Suit Up!';
+		}
+		else if (events.description === "casual") {
+			return 'Chillin';
 		}
 	}
 			
@@ -137,7 +146,7 @@ function displayCalendarEvents(events) {
 
 	let date = formatDate(events[0].start.dateTime)
 
-		const formatType = 'h:mm:ss a';
+		const formatType = 'h:mma';
 		// const formattedTime = events[0].start.dateTime.split('T')[1];
 		
 		// const startTimeRaw = formattedTime.split('-')[0]
@@ -212,7 +221,7 @@ function displayCalendarEvents(events) {
   }	
 
   const eventCards = eventObjects.map(function(currentObj) {
-  	console.log(currentObj)
+  	
 
   	const objDate = moment(currentObj.rawTime);
   	const nowDate = moment();
@@ -274,7 +283,7 @@ function initAppFromGoogleScript() {
     			$('.js-container').append(`
 <div class="ui centered card clearfix js-login">
 	<div>
-		<div>Please click below to log into Google Calendar</div>
+		<div class = "formatAuthenticate">Please click below to log into Google Calendar</div>
 	</div>
 	<div class="content">
 		<button class="ui fluid button"  onclick="getAuthorization()">Log in</button>
@@ -285,6 +294,8 @@ function initAppFromGoogleScript() {
         
     }
 }
+
+$('.js-container').css({"font-weight": "bold", "font-size": "110%"});
 
 function getAuthorization() {
 	$('.js-login').remove();
@@ -373,7 +384,14 @@ function listUpcomingEvents() {
         });
 
         request.execute(function(resp) {
+
         	resolve(resp.items)
         });
+
+		gapi.client.calendar.colors.get().execute(function(resp) {
+			console.log(resp)
+		});
+
+
 	});
 }
